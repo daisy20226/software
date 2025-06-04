@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>湿性AMD病灶分割 - 首页</title>
+    <link rel="stylesheet" href="../static/css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <div id="app">
+        <div class="header">
+            <div class="hospital-logo">
+                <h1 style="font-family: Comic Sans MS;font-size: 35px">湿性AMD病灶分割系统</h1>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="auth-container">
+                <!-- 登录表单 -->
+                <a href="{{ url_for('index') }}"><button class="back"></button></a>
+                <!-- 添加 mode="out-in" 确保过渡顺序 -->
+                <transition name="fade" mode="out-in">
+                    <div v-if="!showRegister" class="login-container" key="login">
+                        <img src="../static/img/denglu.jpg" alt="">
+                        <h2>登录</h2>
+                        <form action="/login" method="post">
+                            <input type="text" name="username" placeholder="邮箱或手机号">
+                            <input type="password" name="password" placeholder="密码">
+                            <button>登录</button>
+                            <p @click="showRegister = true" style="cursor: pointer;color: #666;">
+                                还没有账号？点击注册
+                            </p>
+                        </form>
+                    </div>
+                </transition>
+
+                <!-- 注册表单 -->
+                <transition name="fade" mode="out-in">
+                    <div v-if="showRegister" class="register-container" key="register">
+                        <img src="../static/img/denglu.jpg" alt="">
+                        <h2>注册</h2>
+                        <form action="/register" method="post">
+                            <input type="text" name="username" placeholder="邮箱">
+                            <input type="password" name="password" placeholder="密码">
+                            <input type="password" name="password2" placeholder="确认密码">
+                            <button>注册</button>
+                            <p @click="showRegister = false" style="cursor: pointer;color: #666;">
+                                已有账号？点击登录
+                            </p>
+                        </form>
+                    </div>
+                </transition>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>欢迎使用本系统</p>
+        </footer>
+    </div>
+
+    <script src="static/js/background.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                showRegister: false
+            }
+        });
+    </script>
+</body>
+</html>

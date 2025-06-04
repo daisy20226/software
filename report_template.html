@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        @font-face {
+            font-family: 'SimHei';
+            src: url('/static/fonts/simhei.ttf format('truetype')');
+        }
+        body { font-family: 'SimHei'; padding: 20px; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .image-row { display: flex; margin-bottom: 30px; }
+        .image-col { flex: 50%; padding: 10px; }
+        img { max-width: 100%; height: auto; border: 1px solid #ddd; }
+        .advice-section { margin-top: 30px; }
+        .advice-item { margin-bottom: 25px; padding: 15px; background: #f8f9fa; }
+        h3 { color: #2c3e50; border-bottom: 2px solid #3498db; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>AMD Lesion Detection Report</h1>
+        <p>Generation Time：{{ current_time.strftime("%Y-%m-%d %H:%M:%S") }}</p>
+    </div>
+
+    <div class="image-row">
+        <div class="image-col">
+            <h3>Analysis Results</h3>
+            <img src="{{ analyzed_image }}">
+        </div>
+    </div>
+
+    <div class="advice-section">
+        <h2>Lesion Analysis and Treatment Recommendations</h2>
+        {% for lesion, area in areas.items() %}
+        <div class="advice-item">
+            <h3>{{ lesion }}</h3>
+            <p>area：{{ "%.2f"|format(area) }} px（about {{ "%.2f"|format(area*0.015) }} mm²）</p>
+            <p>Treatment Recommendations：{{ advice[lesion] }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>use</title>
+    <link rel="stylesheet" href="../static/css/use.css" />
+    <!-- 引入 Vue 的 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="horizontal-nav">
+        <nav>
+          <div class="logo">
+            <img src="../static/img/tubiao.jpg" alt="图标" />
+            <span>AMDOct</span>
+          </div>
+          <ul class="nav-list">
+            <li><a href="{{ url_for('index') }}">首页</a></li>
+            <li><a href="{{ url_for('index_introduce') }}">产品介绍</a></li>
+            <li><a href="{{ url_for('index_scheme') }}">产品解决方案</a></li>
+            <li>
+              <a
+                style="color: rgb(177, 182, 182)"
+                href="{{ url_for('index_index') }}"
+                >使用</a
+              >
+            </li>
+            <li><a href="{{ url_for('index_contact') }}">联系我们</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="top-box">
+        <div class="topinner">
+          <br /><br />
+          <h1
+            style="
+              font-family: 'Courier New', Courier, monospace;
+              font-size: 40px;
+              color: rgb(255, 255, 255);
+            "
+          >
+            [[ welcomeMessage ]]
+          </h1>
+          <br />
+          <div class="buttons">
+            <a href="{{ url_for('index_introduce') }}" class="btn green-btn"
+              >查看产品使用教程</a
+            >
+          </div>
+        </div>
+      </div>
+      <!-- 中间盒子 -->
+      <!-- 修改登录信息区域 -->
+      <div class="login-info">
+        <div class="login-text">欢迎回来！</div>
+        <div class="user-info">
+          <img
+            src="../static/img/denglu.jpg"
+            alt="用户头像"
+            class="user-avatar"
+          />
+          <a href="{{ url_for('logout') }}" class="logout-link">
+            <span>退出登录</span>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              style="margin-left: 6px"
+            >
+              <path
+                fill="currentColor"
+                d="M14.08 15.59L16.67 13H7v-2h9.67l-2.59-2.59L15.5 7l5 5-5 5-1.42-1.41zM19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="middle-box">
+        <div class="inner-box upload-box">
+          <!-- 添加 multiple 属性支持多选 -->
+          <div v-if="analysisResults.length > 0"></div>
+          <div v-else>
+            <p>暂无分析结果。</p>
+          </div>
+          <input
+            type="file"
+            id="fileInput"
+            @change="handleFileUpload"
+            style="display: none"
+            multiple
+          />
+          <div class="upload-square" @click="openFileDialog">
+            <div class="preview-container">
+              <img
+                v-for="(preview, index) in previewImages"
+                :key="index"
+                :src="preview"
+                class="thumbnail"
+              />
+            </div>
+
+            <span class="plus-sign" v-show="!previewImages.length">+</span>
+          </div>
+          <!-- 新增选择文件按钮 -->
+          <button class="select-file-btn" @click="openFileDialog">
+            选择文件
+          </button>
+          <!-- 显示所选文件名 -->
+          <div v-for="(file, index) in selectedFiles" :key="index">
+            <span>[[ file.name ]]</span>
+            <button class="delete-btn" @click="deleteFile(index)">删除</button>
+          </div>
+          <!-- 新增确认上传按钮 -->
+          <br /><br />
+          <div class="buttons">
+            <button @click="confirmUpload">确认上传</button>
+            <button @click="analyzeImage" :class="{uploading: isAnalyzing}">
+              <span v-if="!isAnalyzing">立即分析</span>
+              <span v-else>分析中...</span>
+            </button>
+          </div>
+          <br /><br /><br />
+          <!-- 显示分析结果 -->
+        </div>
+        <div class="result-container">
+          <!-- 新增图片占位方块 -->
+          <br /><br />
+          <div class="image-placeholder">
+            <img :src="generatedImage" v-if="generatedImage" alt="生成的图片" />
+          </div>
+
+          <div class="text-carousel">
+            <div class="slider-container">
+              <div class="text-slide active">
+                <h2>PED</h2>
+                <ul>
+                  <li>颜色：蓝色</li>
+                  <li>面积：0.0</li>
+                </ul>
+              </div>
+              <div class="text-slide">
+                <h2>SRF</h2>
+                <ul>
+                  <li>颜色：浅蓝色</li>
+                  <li>面积：0.0</li>
+                </ul>
+              </div>
+              <div class="text-slide">
+                <h2>IS/OS</h2>
+                <ul>
+                  <li>颜色：灰色</li>
+                  <li>面积：0.0</li>
+                </ul>
+              </div>
+              <div class="text-slide">
+                <h2>SHRM</h2>
+                <ul>
+                  <li>颜色：青色</li>
+                  <li>面积：0.0</li>
+                </ul>
+              </div>
+              <div class="text-slide">
+                <h2>IRF</h2>
+                <ul>
+                  <li>颜色：深蓝色</li>
+                  <li>面积：0.0</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="controls">
+              <button id="nextBtn">下一页</button>
+            </div>
+
+            <div class="slide-indicators" id="indicators"></div>
+            <div class="controls">
+              <button id="prevBtn" @click="downloadImage">下载文件</button>
+              <!-- 新增查看历史记录按钮 -->
+              <button id="prevBtn" @click="viewHistory">查看历史记录</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="history-box" v-if="showHistory" id="history-section">
+        <h2 class="history-title">分析历史记录</h2>
+
+        <div class="history-grid">
+          <div
+            class="history-card"
+            v-for="(item, index) in historyFiles"
+            :key="index"
+          >
+            <div class="card-header">
+              <span class="time-badge">[[ formatDate(item.created_at) ]]</span>
+              <img :src="item.image_path" class="history-image" />
+            </div>
+
+            <div class="analysis-results">
+              <div
+                class="result-item"
+                v-for="(result, i) in JSON.parse(item.analysis_results)"
+                :key="i"
+                :style="{minWidth: '300px'}"
+              >
+                <span
+                  class="disease-tag"
+                  :style="{backgroundColor: getClassColor(result.class)}"
+                >
+                  [[ result.class ]]
+                </span>
+                <div class="coordinate-box">
+                  <span class="material-icons">location_on</span>
+                  [[ formatBbox(result.bbox) ]]
+                </div>
+                <div class="area-box">
+                  <span class="material-icons">area_chart</span>
+                  [[ formatArea(result.bbox) ]] px²
+                </div>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+          </div>
+        </div>
+        <div class="chart-container" v-if="showHistory">
+          <br /><br />
+          <div class="chart-item" v-for="(area, name) in chartData" :key="name">
+            <h3>[[ name ]] 历史面积变化</h3>
+            <canvas :id="'chart-' + name"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <p>© 2025 湿性AMD病灶分割系统 版权所有</p>
+    </footer>
+    <script src="static/js/use.js"></script>
+    <script>
+      // 创建 Vue 实例
+      new Vue({
+        el: "#app",
+        delimiters: ["[[", "]]"], // 添加此行
+        data: {
+          // 导航链接数据
+          navLinks: {
+            homepage: "homepage.html",
+            mainusing: "introduce.html",
+            scheme: "scheme.html",
+            use: "use.html",
+            contact: "contact.html",
+          },
+          totalAreas: {
+            PED: 0,
+            SRF: 0,
+            "IS/OS": 0,
+            SHRM: 0,
+            IRF: 0,
+          },
+          // 欢迎信息数据
+          welcomeMessage:
+            "欢迎使用本系统，如遇使用问题，请您观看使用教程或与我们取得联系！",
+          generatedImage: null,
+          selectedFiles: [], // 存储选择的多个文件
+          showHistory: false, // 控制历史记录盒子的显示与隐藏
+          historyFiles: [], // 存储历史文件信息
+          previewImages: [],
+          analysisResults: [],
+          chartData: {},
+          chartInstances: [],
+          isAnalyzing: false,
+        },
+        methods: {
+          updateSlideAreas() {
+            const slides = document.querySelectorAll(".text-slide");
+            slides.forEach((slide) => {
+              const title = slide.querySelector("h2").textContent;
+              const areaElement = slide.querySelector("li:nth-child(2)");
+              if (this.totalAreas[title]) {
+                areaElement.textContent = `面积：${this.totalAreas[
+                  title
+                ].toFixed(2)}`;
+              } else {
+                areaElement.textContent = `面积：${0}`;
+              }
+            });
+          },
+          formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return `${date.getFullYear()}-${(date.getMonth() + 1)
+              .toString()
+              .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}
+              ${date.getHours().toString().padStart(2, "0")}:${date
+              .getMinutes()
+              .toString()
+              .padStart(2, "0")}`;
+          },
+          getClassColor(className) {
+            const colorMap = {
+              PED: "#ff6384",
+              SRF: "#36a2eb",
+              "IS/OS": "#4bc0c0",
+              SHRM: "#ffcd56",
+              IRF: "#9966ff",
+            };
+            return colorMap[className] || "#999";
+          },
+          calculateArea(bbox) {
+            if (!bbox || bbox.length !== 4) return 0;
+            const [x1, y1, x2, y2] = bbox;
+            const width = x2 - x1;
+            const height = y2 - y1;
+            return Math.abs(width * height); // 确保面积为正数
+          },
+          // 其他方法保持不变...
+
+          handleFileUpload(event) {
+            const files = Array.from(event.target.files);
+            this.selectedFiles = [...files]; // 确保每次上传都重置selectedFiles
+            this.previewImages = []; // 清空旧预览
+
+            files.forEach((file) => {
+              if (!file.type.startsWith("image/")) return;
+
+              const reader = new FileReader();
+              reader.onload = (e) => {
+                this.previewImages.push(e.target.result);
+              };
+              reader.readAsDataURL(file);
+            });
+          },
+          // 按钮点击事件处理函数
+          handleButtonClick() {
+            alert("你点击了查看产品使用教程按钮");
+          },
+          downloadImage() {
+            const reportData = {
+              original_image: this.generatedImage.replace(
+                "/results/",
+                "/uploads/"
+              ), // 假设原图保存在 uploads 目录
+              analyzed_image: this.generatedImage,
+              areas: this.totalAreas,
+            };
+
+            fetch("/generate_report", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(reportData),
+            })
+              .then((response) => response.blob())
+              .then((blob) => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `AMD_检测报告_${new Date()
+                  .toISOString()
+                  .slice(0, 10)}.pdf`;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+              })
+              .catch((error) => alert("报告生成失败：" + error.message));
+          },
+          // 新增查看历史记录方法
+          // 修改后的 viewHistory 方法
+          viewHistory() {
+            this.showHistory = true;
+            fetch("/get_history")
+              .then((r) => r.json())
+              .then((data) => {
+                this.historyFiles = data;
+                this.chartData = this.prepareChartData(data);
+                this.$nextTick(() => {
+                  this.drawCharts();
+                  // 新增滚动逻辑
+                  const target = document.getElementById("history-section");
+                  if (target) {
+                    target.scrollIntoView({
+                      behavior: "smooth", // 平滑滚动
+                      block: "start", // 对齐到视口顶部
+                    });
+                  }
+                });
+              });
+          },
+
+          prepareChartData(history) {
+            const categories = ["PED", "SRF", "IS/OS", "SHRM", "IRF"];
+            const data = {};
+
+            // 按创建时间排序
+            const sortedHistory = [...history].sort(
+              (a, b) => new Date(a.created_at) - new Date(b.created_at)
+            );
+
+            categories.forEach((cat) => {
+              data[cat] = sortedHistory.map((record) => {
+                const areas = JSON.parse(record.total_areas);
+                return parseFloat((areas[cat] || 0).toFixed(2));
+              });
+            });
+
+            return data;
+          },
+          drawCharts() {
+            // 销毁旧图表
+            this.chartInstances.forEach((chart) => chart.destroy());
+            this.chartInstances = [];
+
+            // 创建新图表
+            Object.entries(this.chartData).forEach(([name, data]) => {
+              const ctx = document.getElementById(`chart-${name}`);
+
+              const chart = new Chart(ctx, {
+                type: "line",
+                data: {
+                  labels: data.map((_, i) => `第${i + 1}次检测`),
+                  datasets: [
+                    {
+                      label: `面积 (像素单位)`,
+                      data: data,
+                      borderColor: this.getChartColor(name),
+                      tension: 0.1,
+                    },
+                  ],
+                },
+                options: {
+                  responsive: true,
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                      title: { display: true, text: "面积" },
+                    },
+                  },
+                },
+              });
+
+              this.chartInstances.push(chart);
+            });
+          },
+          getChartColor(name) {
+            const colors = {
+              PED: "#ff6384",
+              SRF: "#36a2eb",
+              "IS/OS": "#4bc0c0",
+              SHRM: "#ffcd56",
+              IRF: "#9966ff",
+            };
+            return colors[name] || "#999";
+          },
+          openFileDialog() {
+            document.getElementById("fileInput").click();
+          },
+          confirmUpload() {
+            if (this.selectedFiles.length === 0) {
+              alert("请先上传文件");
+              return;
+            }
+
+            const formData = new FormData();
+            this.selectedFiles.forEach((file, index) => {
+              formData.append(`files`, file); // 使用相同字段名便于后端处理
+            });
+
+            fetch("/upload", {
+              method: "POST",
+              body: formData,
+            })
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error("上传失败");
+                }
+                return response.json();
+              })
+              .then((data) => {
+                console.log("上传成功:", data);
+                // 这里可以添加结果展示逻辑
+                this.generatedImage = "https://via.placeholder.com/300";
+              })
+              .catch((error) => {
+                console.error("错误:", error);
+                alert("上传失败: " + error.message);
+              });
+          },
+          formatArea(bbox) {
+            return this.calculateArea(bbox).toFixed(2);
+          },
+          formatBbox(bbox) {
+            return bbox.map((num) => num.toFixed(2)).join(", ");
+          },
+          deleteFile(index) {
+            this.selectedFiles.splice(index, 1);
+            this.previewImages.splice(index, 1); // 同时删除预览图片
+            alert("文件已成功删除");
+          },
+          analyzeImage() {
+            this.isAnalyzing = true; // 开始加载
+            if (!this.selectedFiles.length) {
+              alert("请先上传图片");
+              return;
+            }
+
+            const firstFile = this.selectedFiles[0];
+            const formData = new FormData();
+            formData.append("file", firstFile);
+
+            fetch("/upload", {
+              method: "POST",
+              body: formData,
+            })
+              .then((response) => {
+                if (!response.ok) {
+                  return response.text().then((text) => {
+                    throw new Error(`上传失败: ${text.substring(0, 100)}`); // 限制错误长度
+                  });
+                }
+                return response.json();
+              })
+              .then((uploadData) => {
+                if (uploadData.error) {
+                  throw new Error(uploadData.error);
+                }
+
+                const imagePath = uploadData.files[0];
+                return fetch("/analyze", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ image_path: imagePath }),
+                });
+              })
+              .then((response) => {
+                if (!response.ok) {
+                  return response.text().then((text) => {
+                    throw new Error(`分析失败: ${text.substring(0, 100)}`);
+                  });
+                }
+                return response.json();
+              })
+              .then((analyzeData) => {
+                if (analyzeData.error) throw new Error(analyzeData.error);
+                this.analysisResults = analyzeData.results;
+                this.generatedImage = analyzeData.result_image;
+                this.totalAreas = analyzeData.total_areas;
+                this.$nextTick(() => {
+                  this.updateSlideAreas();
+                });
+              })
+              .catch((error) => {
+                console.error("错误:", error);
+                alert("分析失败: " + error.message);
+              })
+              .then((analyzeData) => {
+                if (analyzeData.error) throw new Error(analyzeData.error);
+
+                this.analysisResults = analyzeData.results;
+                this.generatedImage = analyzeData.result_image; // 更新结果图片
+
+                // 获取历史记录
+                fetch("/get_history")
+                  .then((r) => r.json())
+                  .then((data) => (this.historyFiles = data));
+              })
+              .finally(() => {
+                    this.isAnalyzing = false; // 结束加载
+              });
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

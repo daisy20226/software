@@ -1,0 +1,639 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* 隐藏横向滚动条 */
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgb(23, 149, 187);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* 确保导航栏宽度为100% */
+    box-sizing: border-box; /* 包含内边距和边框 */
+    color: #fff;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 30px;
+    margin-right: 10px;
+}
+.horizontal-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: rgba(23, 149, 187, 0.95);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+.horizontal-nav nav {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto; /* 水平居中 */
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.nav-list {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px; /* 替代margin-left */
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-list a {
+    color: #ffffff; /* 统一基础颜色 */
+    font-size: 16px;
+    font-weight: 500;
+    padding: 15px 12px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 6px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-list a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff !important; /* 强制覆盖内联样式 */
+    transform: scale(1.15) translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    z-index: 1001;
+}
+
+/* 当前激活项样式（如果需要） */
+.nav-list a.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-image: url(../img/homeback.jpg);
+    background-size: cover;     /* 覆盖容器 */
+    background-position: center; /* 居中显示 */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* 可选：固定背景图 */
+    /* 移除 position: relative 和 overflow: hidden */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 0 50px;
+    color: white;
+
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 30px;
+}
+
+.buttons {
+    display: flex;
+}
+
+.btn {
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+ /* 按钮样式 */
+        .button {
+            display: inline-block;
+            background-color: white; /* 新增背景色 */
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            text-decoration: none;
+            font-family: sans-serif;
+            font-weight: 600;
+            font-size: 1.2em;
+            padding: 0.5em 1em;
+            color: rgb(50, 132, 107);
+            border: 0.15em solid rgb(255, 255, 255);
+            border-radius: 1.5em;
+            transition: 2s;
+        }
+
+        .button:before,
+        .button:after {
+            content: "";
+            position: absolute;
+            top: -1.5em;
+            z-index: -1;
+            width: 200%;
+            aspect-ratio: 1;
+            border: none;
+            border-radius: 40%;
+            background-color: rgba(54, 153, 102, 0.315);
+            transition: 2s;
+        }
+
+        .button:before {
+            left: -80%;
+            transform: translate3d(0, 5em, 0) rotate(-340deg);
+        }
+
+        .button:after {
+            right: -80%;
+            transform: translate3d(0, 5em, 0) rotate(390deg);
+        }
+
+        .button:hover,
+        .button:focus {
+            color: white;
+        }
+
+        .button:hover:before,
+        .button:hover:after,
+        .button:focus:before,
+        .button:focus:after {
+            transform: none;
+            background-color: rgba(13, 99, 53, 0.75);
+        }
+
+   /*设置另一个*/
+   .button1 {
+    display: inline-block;
+    background-color: rgb(50, 132, 107); /* 新增背景色 */
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 1.2em;
+    padding: 0.5em 1em;
+    color: rgb(255, 255, 255);
+    border: 0.15em solid rgb(50, 132, 107);
+    border-radius: 1.5em;
+    transition: 2s;
+}
+
+.button1:before,
+.button1:after {
+    content: "";
+    position: absolute;
+    top: -1.5em;
+    z-index: -1;
+    width: 200%;
+    aspect-ratio: 1;
+    border: none;
+    border-radius: 40%;
+    background-color: rgba(255, 255, 255, 0.315);
+    transition: 2s;
+}
+
+.button1:before {
+    left: -80%;
+    transform: translate3d(0, 5em, 0) rotate(-340deg);
+}
+
+.button1:after {
+    right: -80%;
+    transform: translate3d(0, 5em, 0) rotate(390deg);
+}
+
+.button1:hover,
+.button1:focus {
+    color: rgb(50, 132, 107);
+}
+
+.button1:hover:before,
+.button1:hover:after,
+.button1:focus:before,
+.button1:focus:after {
+    transform: none;
+    background-color: rgba(199, 244, 220, 0.75);
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.new-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    width: 100%; /* 确保新区域宽度为100% */
+    box-sizing: border-box; /* 包含内边距和边框 */
+    flex-wrap: wrap; /* 当空间不足时换行 */
+    
+}
+
+.box-container {
+    display: flex;
+    justify-content: space-between; /* 左右对齐 */
+    align-items: center; /* 垂直居中对齐 */
+}
+.box-container > .box {
+    margin: 0 20px; /* 替代&nbsp;的空格 */
+}
+.box {
+    flex: 1 1 40%;
+    border: 1px solid #fffefe;
+    border-radius: 5px;
+    padding: 10px;
+    background-color:white;
+    box-sizing: border-box; /* 包含内边距和边框 */
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    position: relative; /* 确保元素有正确的定位上下文 */
+   
+
+}
+/* 定义.box元素的初始样式 */
+
+
+/* 第一个.box元素从左侧滑入 */
+.box:nth-of-type(1) {
+    transform: translateX(-100%);
+}
+
+/* 第二个.box元素从右侧滑入 */
+.box:nth-of-type(2) {
+    transform: translateX(100%);
+}
+
+/* 当添加.show类时，元素显示并移动到正常位置 */
+.box.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+.image-area img {
+    width: 100%;
+   margin-left: 50px;
+    border-radius: 5px;
+    align-items: center;
+
+}
+
+.content-area {
+    padding: 10px;
+
+}
+.content-areaba{
+    padding: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    background-color:rgba(255, 255, 255, 0.75);
+    border-radius: 10px; /* 新增圆角属性 */
+}
+.content-areaa{
+    padding: 10px;
+    margin-left: 100px;
+    margin-right: 100px;
+
+    border-radius: 10px; /* 新增圆角属性 */
+}
+.additional-box {
+    display: block;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: white;
+    box-sizing: border-box; /* 包含内边距和边框 */
+    background-image: url(../img/beijing2.png);
+       background-size: cover;     /* 覆盖容器 */
+    background-position: center; /* 居中显示 */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* 可选：固定背景图 */
+    /* 移除 position: relative 和 overflow: hidden */
+
+}
+
+.additional-box.image-area img {
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+}
+
+.additional-box.content-area {
+    padding: 10px;
+}
+
+.additional-box.content-area h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.additional-box.content-area p {
+    color: #666;
+    line-height: 1.5;
+}
+/* 新添加的圆形div样式 */
+ .circle-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    justify-content: center; /* 修改为居中 */
+    align-items: center;
+    width:90%;
+
+}
+
+.circle {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: lightblue;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+/* 新闻动态区域整体样式 */
+.news-section {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 20px;
+    background-color: #f9f9f9;
+    margin: 0 auto;
+    justify-content: center; /* 修改为居中 */
+    margin-left: 110px;
+}
+
+/* 新闻动态区域标题样式 */
+.news-section-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* 单个新闻项样式 */
+.news-item {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #ccc;
+}
+
+/* 新闻项标题样式 */
+.news-item-title {
+    font-size: 18px;
+    color: #007BFF;
+    margin-bottom: 5px;
+}
+
+/* 新闻项日期样式 */
+.news-item-date {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+/* 新闻项内容样式 */
+.news-item-content {
+    font-size: 16px;
+    line-height: 1.5;
+}
+.footer {
+    background-color: rgb(84, 84, 84);
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+/* 小窗口插件样式 */
+/* 小窗口插件样式 */
+.back-to-top-plugin {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    /* 修改背景颜色为蓝色 */
+    background-color: lightblue;
+    color: #fff;
+    /* 去除原有的内边距 */
+    padding: 0;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 999;
+}
+
+.back-to-top-plugin a {
+    text-decoration: none;
+    color: #fff;
+    /* 每个方块有一定的内边距 */
+    padding: 10px;
+    margin: 0;
+    cursor: pointer;
+    /* 每个链接作为一个方块显示 */
+    display: block;
+    /* 方块宽度 */
+    width: 50px;
+    /* 方块高度 */
+    height: 50px;
+    /* 文本居中 */
+    text-align: center;
+    /* 行高等于高度，使文本垂直居中 */
+    line-height: 30px;
+    /* 去除链接默认的下划线 */
+    border-bottom: 1px solid white;
+}
+
+/* 去掉最后一个链接的下边框 */
+.back-to-top-plugin a:last-child {
+    border-bottom: none;
+}
+
+.back-to-top-plugin a:hover {
+    color: rgb(199, 203, 250);
+}
+
+.plugin-window {
+    position: fixed;
+    bottom: 20px; /* 距离底部20px，你可以根据需要调整这个值 */
+    right: 20px; /* 距离右侧20px，你可以根据需要调整这个值 */
+}
+/* 新增图片画廊样式 */
+.image-gallery-shell {
+    width: 90%;
+    height: 700px;
+    display: flex;
+    margin: 50px auto;
+}
+
+.image-gallery-box {
+    flex: 1;
+    overflow: hidden;
+    transition: .5s;
+    margin: 0 20px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, .5);
+    border-radius: 20px;
+    border: 10px solid #fff;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.image-gallery-box > img {
+    width: 200%;
+    height: 85%;
+    object-fit: cover;
+    transition: .5s;
+}
+
+.image-gallery-box > span {
+    font: 500 24px 'Microsoft YaHei', sans-serif;
+    text-align: center;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #2c3e50;
+    padding: 10px;
+     font-weight: bold; /* 新增加粗样式 */
+}
+
+.image-gallery-box:hover {
+    flex-basis: 40%;
+}
+
+.image-gallery-box:hover > img {
+    width: 100%;
+    height: 100%;
+}
+
+/* 适配移动端 */
+@media (max-width: 868px) {
+    .image-gallery-shell {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .image-gallery-box {
+        margin: 30px 0;
+        flex-basis: 300px;
+    }
+
+    .image-gallery-box:hover {
+        flex-basis: 350px;
+    }
+}
+@media (max-width: 768px) {
+    .box-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .box {
+        flex: 1 1 80%;
+        margin: 10px 0 !important;
+    }
+}
+
+
+
+.animated-wave {
+  text-decoration: underline wavy; /* 基础波浪线 */
+  text-decoration-color: red;      /* 波浪线颜色（可选） */
+  font-size:20px;
+ white-space: nowrap;  /* 禁止换行 */
+}
+/* 在home.css中添加 */
+/* 放大后的3D轮播图样式 */
+.carousel-shell {
+    position: relative;
+    width: 90vw;  /* 增大容器宽度 */
+    height: 60vw; /* 增大容器高度 */
+    max-width: 850px; /* 最大宽度增大 */
+    max-height: 400px; /* 最大高度增大 */
+    margin: 80px auto; /* 增加外边距 */
+    perspective: 1200px; /* 增强透视效果 */
+}
+
+.carousel-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    animation: carousel 10s infinite cubic-bezier(0.77, 0, 0.175, 1); /* 放慢动画速度 */
+}
+
+.carousel-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px; /* 增大圆角 */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* 增强阴影效果 */
+    background-size: cover;
+    background-position: center; /* 确保图片居中显示 */
+    -webkit-box-reflect: below 35px linear-gradient(transparent 40%, rgba(255,255,255,0.3)); /* 增强倒影效果 */
+}
+
+/* 调整3D变换参数 */
+.carousel-item:nth-child(1) { transform: rotateY(0) translateZ(45vw); } /* 增大Z轴位移 */
+.carousel-item:nth-child(2) { transform: rotateY(120deg) translateZ(45vw); }
+.carousel-item:nth-child(3) { transform: rotateY(240deg) translateZ(45vw); }
+
+@keyframes carousel {
+    0%, 17.5% { transform: translateZ(-45vw) rotateY(0); } /* 同步调整Z轴位移 */
+    27.5%, 45% { transform: translateZ(-45vw) rotateY(-120deg); }
+    55%, 72.5% { transform: translateZ(-45vw) rotateY(-240deg); }
+    82.5%, 100% { transform: translateZ(-45vw) rotateY(-360deg); }
+}
+
+/* 响应式适配 */
+@media (max-width: 1200px) {
+    .carousel-shell {
+        width: 90vw;
+        height: 70vw;
+        max-width: 800px;
+        max-height: 550px;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-shell {
+        width: 95vw;
+        height: 75vw;
+        margin: 40px auto;
+    }
+    .carousel-item {
+        -webkit-box-reflect: below 15px linear-gradient(transparent 40%, rgba(255,255,255,0.2));
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-content {
+        animation-duration: 15s; /* 移动端更慢的动画速度 */
+    }
+}

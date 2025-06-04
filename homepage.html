@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页 - AMDOct</title>
+     <style>
+        /* 添加新的CSS动画效果 */
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #4CAF50 !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #4CAF50;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .news-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .news-item:hover {
+            transform: translateX(10px);
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+       /* 修改现有的animate-on-scroll类 */
+.animate-on-scroll {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* 为每个圆形添加不同的动画延迟 */
+#circle1.animate-on-scroll { animation-delay: 0.3s; }
+#circle2.animate-on-scroll { animation-delay: 0.6s; }
+#circle3.animate-on-scroll { animation-delay: 0.9s; }
+#circle4.animate-on-scroll { animation-delay: 1.2s; }
+
+/* 确保动画保留最终状态 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+        .plugin-window a {
+            transition: background-color 0.3s ease;
+        }
+
+        .plugin-window a:hover {
+            background-color: rgba(89, 153, 210, 0.8);
+        }
+    </style>
+    <link rel="stylesheet" href="../static/css/home.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="horizontal-nav">
+        <nav>
+            <div class="logo">
+                <img src="../static/img/tubiao.jpg" alt="图标">
+                <span>AMDOct</span>
+            </div>
+            <ul class="nav-list">
+                 <li><a style="color: rgb(177, 182, 182);" href="{{ url_for('index') }}">首页</a></li>
+                <li><a  href="{{ url_for('index_introduce') }}">产品介绍</a></li>
+                <li><a href="{{ url_for('index_scheme') }}">产品解决方案</a></li>
+                <li><a href="{{ url_for('index_index') }}">使用</a></li>
+                <li><a href="{{ url_for('index_contact') }}">联系我们</a></li>
+            </ul>
+        </nav>
+        </div>
+        <main>
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>您值得信赖的OCT阅片助手</h1>
+                    <div class="buttons">
+                        <a href="{{ url_for('index_introduce') }}" class="button">了解更多</a>
+                        &nbsp &nbsp
+                        <a href="{{ url_for('index_scheme') }}" class="button1">查看产品解决方案</a>
+                    </div>
+                </div>
+            </section>
+            <!-- 新添加的盒子区域 -->
+
+            <section class="new-section">
+                <div class="box-container">
+                   <!-- 修改后的盒子区域 -->
+<div class="image-gallery-shell">
+    <div class="image-gallery-box">
+        <img src="../static/img/shiwangmo.jpg" alt="医疗影像3">
+        <span>什么是视网膜</span>
+    </div>
+    <div class="image-gallery-box">
+        <img src="../static/img/doctor.png" alt="医疗影像1">
+        <span>什么是AMD</span>
+    </div>
+    <div class="image-gallery-box">
+        <img src="../static/img/AMD1.png" alt="医疗影像2">
+        <span>AMD病因</span>
+    </div>
+
+    <div class="image-gallery-box">
+        <img src="../static/img/AMD3.png" alt="医疗影像4">
+        <span>AMD诊断</span>
+    </div>
+    <div class="image-gallery-box">
+        <img src="../static/img/AMD4.png" alt="医疗影像5">
+        <span>AMD症状</span>
+    </div>
+</div>
+</div>
+</section>
+              <br><br>
+<div class="additional-box">
+    <div class="content-area">
+        <div class="content-areaba">
+            <div class="content-areaa">
+        <p style="font-size: 50px;">如何预防WET-AMD</p>
+                <p style="font-size: 20px;font-weight:bold;">①&nbsp&nbsp&nbsp生活方式调整</p>
+
+                <p style="font-size: 20px;">
+
+                    <span class="icon">★</span>增加抗氧化食物摄入：多吃富含维生素 C、维生素 E、叶黄素和玉米黄质的食物，如柑橘类水果、坚果、绿色蔬菜、玉米等，这些抗氧化物质有助于保护视网膜免受自由基的损伤。
+            <br><span class="icon">★</span>摄入富含 Omega-3 脂肪酸的食物：深海鱼类如三文鱼、金枪鱼等富含 Omega-3 脂肪酸，能够减轻炎症反应，对眼睛健康有益。建议每周至少食用 2 次深海鱼。
+
+
+                <p style="font-size: 20px;">
+            <span class="icon">★</span>适量运动：保持规律的体育锻炼，如散步、慢跑、游泳等，有助于维持心血管健康，促进眼部血液循环，降低湿性 AMD 的发病风险。
+            <br><span class="icon">★</span>戒烟限酒：吸烟是湿性 AMD 的重要危险因素，戒烟可以显著降低发病风险。同时，过量饮酒会影响眼部血液循环和营养供应，应适量饮酒。
+
+             <p style="font-size: 20px;font-weight:bold;">②&nbsp&nbsp&nbsp眼部保护<br></p>
+                <p style="font-size: 20px;">
+
+            <span class="icon">★</span>避免强光照射：紫外线和蓝光会对视网膜造成损伤，外出时佩戴具有防紫外线功能的太阳镜和宽边帽子，减少强光对眼睛的直接照射。长时间使用电子设备时，可佩戴防蓝光眼镜，降低蓝光对黄斑的损害。
+            定期眼部检查：尤其是 50 岁以上人群，应每年进行一次全面的眼部检查，包括视力检查、眼压测量、眼底检查等，以便早期发现和治疗眼部病变。有湿性 AMD 家族史或其他高危因素的人群，检查频率应适当增加。
+            <span class="icon">★</span>控制血糖血压：糖尿病和高血压可影响眼部血管，增加湿性 AMD 的发生风险。通过健康的生活方式和必要的药物治疗，将血糖、血压控制在正常范围内，有助于保护眼部血管。
+    </div>
+            </div>
+</div>
+
+</div>
+<!-- 小窗口插件 -->
+<div id="plugin" class="plugin-window back-to-top-plugin">
+    <a href="#" @click="backToTop">回到<br>顶部</a>
+
+</div>
+            <br>
+   <div style="margin-left:250px">
+   <h2>本平台可有效解决下列问题</h2>
+    </div>
+    <br>
+
+<!-- 新增3D轮播图板块 -->
+<section class="new-section">
+    <div class="box-container">
+        <div class="carousel-shell">
+            <div class="carousel-content">
+                <div class="carousel-item" style="background-image: url('../static/img/lunbo1.png')"></div>
+                <div class="carousel-item" style="background-image: url('../static/img/lunbo2.png')"></div>
+                <div class="carousel-item" style="background-image: url('../static/img/lunbo3.png')"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<br><br><br>
+
+               <!-- 再次添加的新盒子区域 -->
+               <section class="new-section">
+                <div class="box-container">
+                    <div class="box">
+
+                        <div class="image-area">
+                            <section class="news-section">
+                                <h2 class="news-section-title">新闻动态</h2>
+                                <div class="news-item">
+                                   <a href="https://bydrug.pharmcube.com/news/detail/1affc1ea966f4033cfdd555fdf66036d"> <h3 class="news-item-title">新型眼科诊断技术取得突破</h3></a>
+                                    <p class="news-item-date">2024-02-12</p>
+                                    <p class="news-item-content">近日，一项新型眼科诊断技术在临床试验中取得重大突破，有望为AMD的诊断带来更精准的结果...</p>
+                                </div>
+                                <div class="news-item">
+                                    <a href="https://news.sina.com.cn/sx/2024-09-23/detail-incqctzq6813350.shtml#:~:text=%E6%AD%A4%E6%AC%A1%E5%AD%A6%E6%9C%AF%E4%BC%9A%E4%B8%AD%2C%E5%A4%9A%E5%90%8D%E5%9B%BD%E5%86%85%E7%9C%BC%E7%A7%91%E4%B8%93%E5%AE%B6%E6%8B%85%E4%BB%BB%E4%BC%9A%E8%AE%AE%E4%B8%BB%E6%8C%81%E6%88%96%E8%BF%9B%E8%A1%8C%E4%B8%93%E9%A2%98%E6%8A%A5%E5%91%8A%2C%E5%86%85%E5%AE%B9%E6%B6%B5%E7%9B%96%E7%9C%BC%E5%BA%95%E6%89%8B%E6%9C%AF%E3%80%81%E7%99%BD%E5%86%85%E9%9A%9C%E6%89%8B%E6%9C%AF%E3%80%81%E8%BF%91%E8%A7%86%E6%89%8B%E6%9C%AF%E3%80%81%E6%84%9F%E6%9F%93%E6%80%A7%E8%A7%92%E8%86%9C%E7%82%8E%E3%80%81%E5%B9%B2%E7%9C%BC%E7%97%87%E3%80%81%E6%96%9C%E8%A7%86%E7%AD%89%E7%9C%BC%E7%A7%91%E5%90%84%E7%97%85%E7%A7%8D%E9%A2%86%E5%9F%9F%E7%9A%84%E8%AF%8A%E7%96%97%E6%96%B0%E6%8A%80%E6%9C%AF%2C%E5%85%85%E5%88%86%E5%90%91%E7%9C%BC%E7%A7%91%E8%A1%8C%E4%B8%9A%E5%B1%95%E7%A4%BA%E5%85%B6%E6%96%B0%E7%9A%84%E7%9F%A5%E8%AF%86%E3%80%81%E5%88%9B%E6%96%B0%E7%A0%94%E7%A9%B6%E4%BB%A5%E5%8F%8A%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF%2C%E4%B8%BA%E5%B9%BF%E5%A4%A7%E7%9C%BC%E7%A7%91%E5%90%8C%E9%81%93%E4%BB%AC%E5%91%88%E4%B8%8A%E4%B8%80%E5%9C%BA%E7%B2%BE%E5%BD%A9%E7%9A%84%E5%AD%A6%E6%9C%AF%E7%9B%9B%E5%AE%B4%E3%80%82,%E7%BE%A4%E8%8B%B1%E8%8D%9F%E8%90%83%2C%E6%99%BA%E6%85%A7%E7%A2%B0%E6%92%9E"><h3 class="news-item-title">行业研讨会聚焦眼科医疗创新</h3></a>
+                                    <p class="news-item-date">2024-09-23</p>
+                                    <p class="news-item-content">上周，眼科医疗行业研讨会在京举行，众多专家共同探讨了眼科医疗领域的创新与发展...</p>
+                                </div>
+                                <div class="news-item">
+                                    <a href="https://cn.investing.com/news/company-news/article-93CH-2632853"><h3 class="news-item-title">EyePoint在AMD治疗DURAVYU试验中取得进展</h3></a>
+                                    <p class="news-item-date">2025-01-13</p>
+                                    <p class="news-item-content">马萨诸塞州沃特敦公司宣布其主要产品候选DURAVYU™用于治疗湿性年龄相关性黄斑变性(AMD)的临床开发取得重大进展。...</p>
+                                </div>
+                            </section>
+                        </div>
+
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="box target-box">
+                        <div style="align-items: center;" class="content-area">
+                            <div class="image-area">
+                                <img style="width: 550px;height: 450px;" src="../static/img/xinwen.jpeg" alt="AMD科普">
+                            </div>
+                        </div>
+                    </div>
+
+                 </div>
+                   </section>
+               <footer class="footer">
+                <p> © 2025 AMDOct识别系统 版权所有</p>
+                </footer>
+
+        </main>
+
+    </div>
+     <script>
+        // 增强现有的滚动动画逻辑
+        // 修改JavaScript观察器逻辑
+// 修改JavaScript观察器逻辑
+document.addEventListener('DOMContentLoaded', function() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // 添加动画类时保留原有类
+                entry.target.classList.add('animate-on-scroll');
+            }
+        });
+    }, {
+        threshold: 0.1 // 当元素10%进入视口时触发
+    });
+
+    // 按顺序观察四个圆形
+    const circles = document.querySelectorAll('.circle');
+    circles.forEach((circle, index) => {
+        // 设置初始样式确保元素不可见
+        circle.style.opacity = '0';
+        observer.observe(circle);
+    });
+});
+
+        // 增强分享按钮交互
+        document.querySelectorAll('.bdsharebuttonbox a').forEach(btn => {
+            btn.addEventListener('mouseover', () => {
+                btn.style.transform = 'scale(1.1)';
+            });
+            btn.addEventListener('mouseout', () => {
+                btn.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+    <script src="../static/js/huadong.js"></script>
+
+</body>
+
+</html>

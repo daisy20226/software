@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=11">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <title>Vue Sliding Navigation Bar</title>
+    <link rel="stylesheet" href="../static/css/mainuse.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- 横向导航栏开始 -->
+        <div class="horizontal-nav">
+            <nav>
+                <div class="logo">
+                    <img src="../static/img/tubiao.jpg" alt="图标">
+                    <span>AMDOct</span>
+                </div>
+                <ul class="nav-list">
+                    <li><a href="/">首页</a></li>
+                    <li><a style="color: rgb(177, 182, 182);" href="/introduce">产品介绍</a></li>
+                    <li><a href="/scheme">产品解决方案</a></li>
+                    <li><a href="/index">使用</a></li>
+                    <li><a href="/contact">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- 横向导航栏结束 -->
+
+        <!-- 动态导航栏和内容区域 -->
+        <div class="nav-container">
+            <div v-for="(box, index) in boxes" :key="index" class="nav-item"
+                 :class="{ active: activeBox === index }"
+                 @click="scrollToBox(index)">
+                [[ box.name ]]
+            </div>
+        </div>
+
+        <div class="content-container">
+            <div v-for="(box, index) in boxes" :key="index" class="content-box" :id="box.id">
+                <h1>[[ box.name ]]</h1>
+                <div v-html="box.content"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>© 2025 湿性AMD病灶分割系统 版权所有</p>
+    </footer>
+
+    <!-- Vue.js 引入 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            delimiters: ['[[', ']]'],  // 自定义插值分隔符
+            data: {
+                boxes: [
+                    {
+                        id: "box1",
+                        name: "产品功能介绍",
+                        content: `
+                            <p style="font-family:STKaiti;font-size:20px;">
+                                湿性年龄相关性黄斑变性（湿性 AMD）是一种严重影响视力的眼部疾病，其特征是视网膜下出现异常的新生血管，这些血管容易渗漏和出血，导致黄斑区受损，严重时可致盲。光学相干断层扫描（OCT）图像能够清晰呈现眼部组织结构，对湿性 AMD 的诊断和病情监测至关重要。<br><br>
+                                然而，准确识别和分割 OCT 图像中的病变区域，对于医生来说是一项极具挑战性的任务。本产品应运而生，旨在为医生提供精准的病变区域分割，辅助病情监测和治疗方案的制定。
+                            </p>
+                            <div class="sub-box">
+                                <img style="img" src="../static/img/100_1.jpg">
+                            </div>
+                            <p style="font-family:STKaiti;font-size:20px;">
+                                核心功能：<br>
+                                病变区域分割本产品利用先进的深度学习算法和图像处理技术，对湿性 AMD 的 Oct 图像进行分析，能够自动、精准地分割出图像中的病变区域。算法经过大量标注数据的训练，学习了湿性 AMD 各种病变特征在 OCT 图像中的表现，从而能够在复杂的图像中准确识别病变区域。<br><br>
+                                提供给医生的数据病变区域位置：产品以可视化的方式在 OCT 图像上标注出病变区域的具体位置，可以直观地看到病变在眼部组织中的分布，精确了解病变与周围正常组织的关系。
+                            </div>
+                            <div class="sub-box2">
+                                <img style="img" src="../static/img/bingtu.jpg">
+                            </div>
+                            <p style="font-family:STKaiti;font-size:20px;">
+                                <br><br>
+                                病变区域面积：通过计算分割出的病变区域像素数量，并结合 OCT 图像的比例尺，产品能够准确计算出病变区域的面积。病变面积的量化数据对于评估病情进展和治疗效果非常关键，通过对比不同时期的病变面积，判断病情。<br><br>
+                                相应标注图片：除了位置和面积数据，产品还提供带有详细标注的 OCT 图像，标注清晰显示病变区域的轮廓、边界以及关键特征。这些标注图片可以直接用于病历记录、会诊讨论以及与患者沟通病情，方便医生向患者解释病情和治疗方案。
+                            </p>
+                        `
+                    },
+                    {
+                        id: "box2",
+                        name: "产品精确度说明",
+                        content: `
+                            <p style="font-family:STKaiti;font-size:20px;">
+                                基于YOLOv11的湿性年龄相关性黄斑变性（AMD）OCT图像分割系统通过深度学习算法高效识别和精准分割OCT图像中的关键病理特征（如视网膜积液、出血、新生血管膜等），辅助医生快速定位病变区域并量化分析病灶的形态学参数，从而客观评估病情严重程度及进展趋势。系统结合临床数据库与诊疗指南，可自动生成结构化报告，提示抗VEGF药物注射、光动力疗法等个性化治疗建议，并动态追踪治疗效果，帮助医生减少主观判断差异、缩短诊断周期，在提升病灶检出率与定量分析精度的同时，优化治疗决策流程，为湿性AMD患者提供更及时、精准的干预方案，最终改善患者视力预后并降低不可逆损伤风险。
+                            </p>
+                            <br><br>
+                            <div class="sub-box3">
+                                <table class="table-centered">
+                                    <thead>
+                                        <tr>
+                                            <th>Class</th>
+                                            <th>BOX mAP50</th>
+                                            <th>Mask mAP50</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>all</td>
+                                            <td>0.708</td>
+                                            <td>0.728</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PED</td>
+                                            <td>0.706</td>
+                                            <td>0.74</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SRF</td>
+                                            <td>0.765</td>
+                                            <td>0.771</td>
+                                        </tr>
+                                        <tr>
+                                            <td>IS/OS</td>
+                                            <td>0.86</td>
+                                            <td>0.871</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SHRM</td>
+                                            <td>0.615</td>
+                                            <td>0.607</td>
+                                        </tr>
+                                        <tr>
+                                            <td>IRF</td>
+                                            <td>0.593</td>
+                                            <td>0.649</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="font-family:STKaiti;font-size:18px; margin-top:1.5rem;">
+                                <p><strong>参数说明：</strong></p>
+                                <ul>
+                                    <li><strong>Class</strong>：表示目标类别，“all” 代表所有类别汇总（如“PED”“SRF”等具体类别）；</li>
+                                    <li><strong>Images</strong>：参与评估的图像数量（“all”类别对应703张，“PED”类别对应358张,“SRF”类别对应352张，“IS/OS”类别对应534张，“SHRF”类别对应360张，“IRF”类别对应36张）；</li>
+
+                                    <li><strong>mAP50</strong>：IoU阈值0.5时的平均精度均值，评估模型基础检测性能（如“all”类别Box mAP50为0.708）；</li>
+                                </ul>
+                            </div>
+                        `
+                    },
+                    {
+                        id: "box3",
+                        name: "图文使用说明",
+                        content: `
+                            <div class="guide-container">
+                                <div class="image-card">
+                                    <div class="card">
+                                        <img style="width:800px;height:600px;" src="../static/img/shiyong1.jpg" alt="步骤1">
+                                        <div class="card-text">
+                                            <h3>1.在导航栏找到使用按钮</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <img style="width:800px;height:600px;" src="../static/img/shiyong2.png" alt="步骤2">
+                                        <div class="card-text">
+                                            <h3>2.上传需要识别的图片</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <img style="width:800px;height:600px;" src="../static/img/shiyong3.png" alt="步骤3">
+                                        <div class="card-text">
+                                            <h3>3.点击上传图片，然后点击分析图片</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <img style="width:800px;height:600px;" src="../static/img/shiyong4.png" alt="步骤4">
+                                        <div class="card-text">
+                                            <h3>4.点击下载文件下载详细的报告</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        id: "box4",
+                        name: "使用教程视频",
+                        content: `
+                            <p style="font-family:STKaiti;font-size:20px;">
+                                以下是湿性 AMD 病灶分割系统的使用教程视频，帮助您快速上手。
+                            </p>
+                            <br><br>
+                            <div style="margin: 2rem 0; width: 100%; height: 400px; display: flex; justify-content: center; align-items: center;">
+                                <video width="100%" height="auto" controls>
+                                    <source src="../static/img/teach.mp4" type="video/mp4">
+                                    您的浏览器不支持视频播放。
+                                </video>
+                            </div>
+                            <br>
+                            <br>
+                            <p style="font-family:STKaiti;font-size:20px;">
+                                如果您有任何问题或需要进一步的帮助，请联系我们的客服团队。
+                            </p>
+                        `
+                    }
+                ],
+                activeBox: 0
+            },
+            methods: {
+                scrollToBox(index) {
+                    const targetBox = document.getElementById(this.boxes[index].id);
+                    targetBox.scrollIntoView({ behavior: 'smooth' });
+                    this.activeBox = index;
+                },
+                handleScroll() {
+                    const scrollY = window.scrollY;
+                    const boxes = this.boxes;
+                    for (let i = 0; i < boxes.length; i++) {
+                        const box = document.getElementById(boxes[i].id);
+                        const boxTop = box.offsetTop;
+                        const boxBottom = boxTop + box.offsetHeight;
+                        if (scrollY >= boxTop && scrollY < boxBottom) {
+                            this.activeBox = i;
+                            break;
+                        }
+                    }
+                }
+            },
+            mounted() {
+                window.addEventListener('scroll', this.handleScroll);
+            },
+            beforeDestroy() {
+                window.removeEventListener('scroll', this.handleScroll);
+            }
+        });
+    </script>
+</body>
+
+</html>

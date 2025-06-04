@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页 - AMDOCT</title>
+    <link rel="stylesheet" href="../static/css/contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="horizontal-nav">
+            <nav>
+                <div class="logo">
+                    <img src="../static/img/tubiao.jpg" alt="图标">
+                    <span>AMDOct</span>
+                </div>
+                <ul class="nav-list">
+                    <li><a href="{{ url_for('index') }}">首页</a></li>
+                    <li><a href="{{ url_for('index_introduce') }}">产品介绍</a></li>
+                    <li><a href="{{ url_for('index_scheme') }}">产品解决方案</a></li>
+                    <li><a href="{{ url_for('index_index') }}">使用</a></li>
+                    <li><a style="color: rgb(177, 182, 182);" href="{{ url_for('index_contact') }}">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="contact-container">
+            <div class="header">
+                <h1 style="font-size: 50px;">联系我们</h1>
+                <p style="font-size: 20px;">欢迎您提出宝贵意见，您的建议对我们很重要</p>
+            </div>
+            <div class="content-wrapper">
+                <div class="contact-info">
+                    <div>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>联系地址<br>湖南省湘潭市雨湖区羊牯塘街道湘潭大学</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-phone"></i>
+                        <p>联系电话<br>15111159186</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-envelope"></i>
+                        <p>邮箱地址<br>2199724021@qq.com</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h2>建议提交</h2>
+                    <form>
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                id="name"
+                                v-model="formFields.name.value"
+                                @focus="handleFocus('name')"
+                                @blur="handleBlur('name')"
+                                placeholder=" "
+                                required>
+                            <label
+                                for="name"
+                                :style="labelStyles('name')">姓名</label>
+                        </div>
+                        <div class="form-group">
+                            <input
+                                type="email"
+                                id="email"
+                                v-model="formFields.email.value"
+                                @focus="handleFocus('email')"
+                                @blur="handleBlur('email')"
+                                placeholder=" "
+                                required>
+                            <label
+                                for="email"
+                                :style="labelStyles('email')">邮箱</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea
+                                id="message"
+                                rows="5"
+                                v-model="formFields.message.value"
+                                @focus="handleFocus('message')"
+                                @blur="handleBlur('message')"
+                                placeholder=" "
+                                required></textarea>
+                            <label
+                                for="message"
+                                :style="labelStyles('message')">输入您的建议</label>
+                        </div>
+                        <button type="submit">提交</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p> © 2025 湿性AMD病灶分割系统 版权所有</p>
+    </footer>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 原有head部分保持不变 -->
+</head>
+<body>
+    <div id="app">  <!-- 修改此处为vue挂载点 -->
+        <!-- 原有内容保持不变 -->
+
+        <!-- 原有footer保持不变 -->
+    </div>
+
+    <!-- 在body末尾添加Vue库 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                formFields: {
+                    name: { focused: false, value: '' },
+                    email: { focused: false, value: '' },
+                    message: { focused: false, value: '' }
+                }
+            },
+            methods: {
+                handleFocus(field) {
+                    this.formFields[field].focused = true;
+                },
+                handleBlur(field) {
+                    if (!this.formFields[field].value) {
+                        this.formFields[field].focused = false;
+                    }
+                }
+            },
+            computed: {
+                labelStyles() {
+                    return field => ({
+                        transform: this.formFields[field].focused ? 'translateY(-100%)' : 'translateY(0)',
+                        fontSize: this.formFields[field].focused ? '12px' : '16px'
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+</body>
+
+</html>

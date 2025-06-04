@@ -1,0 +1,258 @@
+/* mainuse.css */
+/* 基础样式 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', '微软雅黑', sans-serif;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background-attachment: fixed;
+    line-height: 1.6;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgb(23, 149, 187);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* 确保导航栏宽度为100% */
+    box-sizing: border-box; /* 包含内边距和边框 */
+    color: #fff;
+}
+/* 横向导航栏 */
+.horizontal-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: rgba(23, 149, 187, 0.95);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+.horizontal-nav nav {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto; /* 水平居中 */
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* 导航列表容器 */
+.nav-list {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px; /* 替代margin-left */
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-list a {
+    color: #ffffff; /* 统一基础颜色 */
+    font-size: 16px;
+    font-weight: 500;
+    padding: 15px 12px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 6px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-list a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff !important; /* 强制覆盖内联样式 */
+    transform: scale(1.15) translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    z-index: 1001;
+}
+
+/* 当前激活项样式（如果需要） */
+.nav-list a.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 30px;
+    margin-right: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list li {
+    margin: 0; /* 重置原有margin */
+    display: flex;
+    align-items: center;
+}
+
+/* 移除可能冲突的旧样式 */
+nav ul li {
+     margin-left: 0 !important; /* 旧代码可能覆盖间距 */
+}
+
+/* 侧边导航栏 */
+.nav-container {
+    position: fixed;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 280px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    z-index: 999;
+}
+
+.nav-item {
+    padding: 1.2rem;
+    margin: 0.5rem 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(23, 149, 187, 0.1);
+    color: #1795bb;
+}
+
+.nav-item.active {
+    background: #1795bb;
+    color: white;
+    transform: translateX(10px);
+}
+
+/* 内容区域 */
+.content-container {
+    margin-left: 320px;
+    padding: 2rem;
+    margin-top: 80px;
+    max-width: 1200px;
+}
+
+.content-box {
+    min-height: 100vh;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.text-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.text-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+/* 新增针对 Sheet1.png 的专用样式 */
+.sub-box3 {
+    width: 100%;         /* 强制宽度与父容器一致 */
+    max-width: 100%;     /* 禁止超过父容器宽度 */
+    height: auto;        /* 高度自适应 */
+    margin: 2rem 0;
+    overflow-x: auto;    /* 允许横向滚动 */
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.sub-box3 img {
+    width: 1782px;       /* 保持图片原始宽度 */
+    height: 284px;       /* 保持图片原始高度 */
+    min-width: 100%;     /* 关键：确保图片最小宽度填满容器 */
+    display: block;      /* 避免间隙 */
+    object-fit: cover;   /* 防止变形（可选） */
+}
+
+.sub-box, .sub-box2 {
+    width: 100%;
+    height: auto; /* 改为自动高度 */
+    max-height: 400px; /* 限制最大高度 */
+    margin: 2rem 0;
+    border-radius: 12px;
+    overflow: hidden; /* 隐藏溢出部分 */
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
+    display: flex; /* 使用弹性布局居中 */
+    justify-content: center;
+    align-items: center;
+    background: white; /* 避免透明背景 */
+}
+
+/* 确保图片完全适应容器 */
+.sub-box img, .sub-box2 img {
+    width: auto; /* 根据容器宽度自动调整 */
+    height: auto; /* 根据容器高度自动调整 */
+    max-width: 100%; /* 限制最大宽度 */
+    max-height: 100%; /* 限制最大高度 */
+    object-fit: contain; /* 保持比例并完整显示 */
+}
+
+/* 页脚 */
+.footer {
+    position: relative;
+ background-color: rgb(84, 84, 84);
+    color: white;
+    padding: 5px;
+    text-align: center;
+    margin-top: 3rem;
+    backdrop-filter: blur(5px);
+}
+
+/* 表格样式 */
+.table-centered {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.table-centered th,
+.table-centered td {
+    padding: 12px;
+    text-align: center; /* 水平居中 */
+    vertical-align: middle; /* 垂直居中 */
+    border: 1px solid #ddd;
+}
+
+.table-centered th {
+    background-color: #1795bb;
+    color: white;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .nav-container {
+        width: 200px;
+    }
+
+    .nav-list {
+        gap: 15px;
+    }
+
+    .nav-list a {
+        font-size: 14px;
+        padding: 12px 8px;
+    }
+}

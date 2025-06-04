@@ -1,0 +1,476 @@
+        /*
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-image: url(空缺);
+            background-repeat: no-repeat;
+            !* 防止背景图片重复 *!
+            background-size: cover;
+            !* 让背景图片铺满整个屏幕 *!
+            background-position: center center;
+            !* 使图片居中显示 *!
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #337ab7;
+            color: white;
+            padding: 20px;
+        }
+
+        .hospital-logo {
+            display: flex;
+            align-items: center;
+            width: auto;
+            margin: 0 auto;
+        }
+
+        .navigation {
+            display: flex;
+        }
+
+        .guide,
+        .wechat {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+
+        .guide img,
+        .wechat img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            flex: 1;
+            width: auto;
+            margin: 0 auto;
+        }
+
+        .version {
+            display: flex;
+            flex-direction: row;
+            !* 将垂直排列改为水平排列 *!
+            justify-content: space-between;
+            !* 让子元素在水平方向上均匀分布 *!
+            align-items: center;
+            !* 垂直方向上居中对齐 *!
+            width: auto;
+            margin: 0 auto;
+        }
+
+        .public-version {
+            display: flex;
+            align-items: center;
+            background-color: rgba(173, 216, 230, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+            height: 550px;
+            cursor: pointer;
+            width: 350px;
+            flex-direction: column;
+            !* 使内部元素纵向排列 *!
+            align-items: center;
+        }
+
+        .academic-version {
+            display: flex;
+            flex-direction: column;
+            !* 使内部元素纵向排列 *!
+            background-color: rgba(173, 216, 230, 0.5);
+            border-radius: 10px;
+            margin-left: 10px;
+            padding: 20px;
+            height: 550px;
+            cursor: pointer;
+            width: 550px;
+        }
+
+        .public-version img {
+            border-radius: 50%;
+            !* 将图片的边框半径设置为 50%，使其呈现圆形 *!
+            width: 200px;
+            !* 设置图片的宽度，可根据需要调整 *!
+            height: 200px;
+            !* 设置图片的高度，与宽度相同，确保图片是圆形而不是椭圆 *!
+            object-fit: cover;
+            !* 确保图片填充整个圆形区域，可能会裁剪部分图片 *!
+            margin-left: 10px;
+        }
+
+        .academic-version img {
+            width: 530px;
+            height: 350px;
+        }
+
+
+        .footer {
+            background-color: #337ab7;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .new-box {
+            !* 这里添加新盒子的样式，比如背景颜色、边框、内边距、外边距等 *!
+            padding: 10px;
+            margin-top: 10px;
+            !* 可以调整与上方图片的距离 *!
+            width: 530px;
+            text-align: center;
+            !* 使内部元素水平居中 *!
+        }
+
+        .button-one {
+            background-color: #1795bb;
+            border-radius: 12px;
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            width: 250px;
+        }
+
+        .button-one:hover {
+            background-color: #fff;
+            color: #1795bb;
+            border: 1px solid #ccc;
+        }
+
+
+        .button-two {
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: none;
+            color: #1795bb;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            width: 250px;
+        }
+
+        .button-two:hover {
+            background-color: #1795bb;
+            color: white;
+            border: 1px solid #ccc;
+        }
+
+        !* 新增样式 *!
+        .login-container,
+        .register-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: -70px;
+            !* 调整这个值来控制向上移动的距离 *!
+        }
+
+        .login-container img,
+        .register-container img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .login-container input,
+        .register-container input {
+            width: 300px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        .login-container button,
+        .register-container button {
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition-duration: 0.4s;
+        }
+
+        .login-container button:hover,
+        .register-container button:hover {
+            background-color: #1795bb;
+            color: white;
+        }        */
+:root {
+    --primary-color: #337ab7;
+    --secondary-color: #a6c1ee;
+    --accent-color: #1687ec;
+    --text-light: #ffffff;
+    --text-dark: #2c3e50;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+
+}
+.login-container button:hover,
+        .register-container button:hover {
+            background-color: #1795bb;
+            color: white;
+        }
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.header {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hospital-logo h1 {
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 2.2rem;
+    color: var(--text-dark);
+    text-align: center;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 120px);
+    padding: 2rem;
+}
+
+.auth-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+}
+
+.auth-title {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 0.8rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 8px rgba(166, 193, 238, 0.3);
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    border: none;
+    border-radius: 0.8rem;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.auth-btn:hover {
+    transform: translateY(-2px);
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.auth-switch:hover {
+    color: var(--primary-color);
+}
+
+.back-button-container {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+}
+
+
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.3s ease;
+}
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-dark);
+}
+        .back {
+    position: fixed; /* 固定定位 */
+    top: 20px;       /* 距离顶部20px */
+    left: 20px;      /* 距离左侧20px */
+    width: 50px;     /* 圆形直径 */
+    height: 50px;    /* 圆形直径 */
+    border-radius: 50%; /* 圆形效果 */
+    background-color: #ffffff; /* 默认白色背景 */
+    border: 2px solid #1795bb; /* 添加蓝色边框 */
+    color: #1795bb;  /* 图标/文字颜色 */
+    display: flex;   /* 弹性布局 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    cursor: pointer;
+    transition: all 0.3s ease; /* 平滑过渡效果 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 添加投影 */
+}
+
+.back:hover {
+    background-color: #1795bb; /* 悬停蓝色背景 */
+    color: white; /* 悬停白色文字 */
+    border-color: transparent; /* 隐藏边框 */
+}
+
+/* 如果使用文字内容 */
+.back::after {
+    content: "←";   /* 使用箭头符号 */
+    font-size: 24px; /* 箭头大小 */
+    font-weight: bold;
+}
+
+/* 如果使用图标字体 */
+/* <button class="back"><i class="icon-arrow-left"></i></button> */
+.back i {
+    font-size: 24px;
+}
+
+        
+.login-container, .register-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: -70px;
+            /* 调整这个值来控制向上移动的距离 */
+        }
+.public-version {
+            display: flex;
+            align-items: center;
+            background-color: rgba(173, 216, 230, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+            height: 550px;
+            cursor: pointer;
+            width: 350px;
+            flex-direction: column;
+            align-items: center;
+        }
+.new-box {
+
+            padding: 10px;
+            margin-top: 10px;
+            width: 530px;
+            text-align: center;
+        }
+.login-container img,
+        .register-container img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .login-container input,
+        .register-container input {
+            width: 300px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        /* 在 index.css 中添加/修改以下内容 */
+.login-container form,
+.register-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* 使表单内容水平居中 */
+}
+
+.login-container button,
+.register-container button {
+    /* 保持原有样式基础上添加 */
+    display: block;       /* 转换为块级元素 */
+    margin: 0 auto;       /* 水平居中 */
+    height: 40px;
+    width: 100px;
+    border: 2px solid #ffffff;
+border-radius: 20px;
+    /* 固定宽度（根据实际需要调整） */
+    /* 或使用百分比宽度 */
+    /* width: 50%; */
+}

@@ -1,0 +1,225 @@
+/* 在contact.css中添加/修改以下样式 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* 关键属性 */
+    background-image: url(../img/beijing7.jpg);
+    background-repeat: no-repeat; /* 设置背景图片不重复 */
+    background-size: cover; /* 使背景图片覆盖整个容器 */
+}
+
+.footer {
+    background-color: rgb(84, 84, 84);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    flex-shrink: 0; /* 禁止footer收缩 */
+    position: relative;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgb(23, 149, 187);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* 确保导航栏宽度为100% */
+    box-sizing: border-box; /* 包含内边距和边框 */
+    color: #fff;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 30px;
+    margin-right: 10px;
+}
+
+.horizontal-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: rgba(23, 149, 187, 0.95);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.horizontal-nav nav {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto; /* 水平居中 */
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px; /* 替代margin-left */
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-list a {
+    color: #ffffff; /* 统一基础颜色 */
+    font-size: 16px;
+    font-weight: 500;
+    padding: 15px 12px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 6px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-list a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff !important; /* 强制覆盖内联样式 */
+    transform: scale(1.15) translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    z-index: 1001;
+}
+
+/* 当前激活项样式（如果需要） */
+.nav-list a.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* 主体 */
+.contact-container {
+    background-color: rgba(180, 179, 179, 0.5);
+    padding: 30px;
+    border-radius: 15px;
+    width: 100%;
+    height: 100vh; /* 占满整个视口高度 */
+    color: white; /* 设置字体颜色为白色 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 15px; /* 减小两个内容块之间的距离 */
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.contact-info, .contact-form {
+    flex: 1;
+    padding: 20px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.contact-info div {
+    display: flex;
+    align-items: start;
+    gap: 15px;
+}
+
+.contact-info i {
+    font-size: 30px;
+    margin-top: 5px;
+}
+
+.contact-form {
+    background-color: #fff;
+    color: #333;
+    border-radius: 8px;
+    padding: 30px;
+    width: 60%; /* 表单宽度设置为60% */
+    max-width: 500px;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.form-group label {
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    color: #777;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: #00b8d4;
+}
+
+.form-group input:focus ~ label, .form-group textarea:focus ~ label {
+    transform: translateY(-100%);
+    font-size: 12px;
+    color: #00b8d4;
+}
+
+form button {
+    background-color: #00b8d4;
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #009fb7;
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    .contact-form {
+        width: 100%;
+        max-width: 100%;
+    }
+}

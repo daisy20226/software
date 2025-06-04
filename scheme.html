@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解决方案</title>
+    <link rel="stylesheet" href="../static/css/scheme.css">
+
+</head>
+<body>
+    <div id="app">
+        <div class="horizontal-nav">
+        <nav>
+            <div class="logo">
+                <img src="../static/img/tubiao.jpg" alt="图标">
+                <span>AMDOct</span>
+            </div>
+            <ul class="nav-list">
+                 <li><a href="{{ url_for('index') }}">首页</a></li>
+                <li><a  href="{{ url_for('index_introduce') }}">产品介绍</a></li>
+                <li><a style="color: rgb(177, 182, 182);" href="{{ url_for('index_scheme') }}">产品解决方案</a></li>
+                <li><a href="{{ url_for('index_index') }}">使用</a></li>
+                <li><a href="{{ url_for('index_contact') }}">联系我们</a></li>
+            </ul>
+        </nav>
+        </div>
+        <main>
+           <!--主题内容-->
+           <div class="outer-box">
+                <div class="inner-box">
+                    <p>1、针对湿性AMD中黄斑区OCT图像分割不精准的问题：
+黄斑区结构复杂，异常区域常与正常组织重叠，导致模型在边界检测和精细分割上表现不稳定。受输入图像质量、样本多样性及标注标准不统一等因素的影响，分割结果常出现漏检、过度分割或噪声干扰等问题，进而影响对新生血管及液体渗漏区域的定量评估，限制了临床辅助决策的有效性。针对这一问题，本系统采用以下技术：C2PSA模块通过空间注意力机制提升边界检测精度，显著减少边界断裂率，并增强异常区域与正常组织的区分能力；CBS块结合卷积、批量归一化和SiLU激活函数优化特征提取，有效降低噪声干扰和过度分割率；C3k2块利用小卷积核快速提取多尺度特征，强化对微小病灶的检测能力；SPPF模块通过整合多尺度特征解决遮挡问题，显著提升分割性能（Dice系数提高）。这些技术共同提升了分割的精准性和稳定性，为临床诊疗提供了更可靠的支持。</p>
+                </div>
+                <div class="inner-box">
+                    <p>2、针对传统定期检查模式在湿性AMD中黄斑区OCT图像动态监测中的局限性的问题：
+传统定期检查模式存在显著局限性：单次静态影像无法捕捉病灶的时空异质性演变，而现有分析工具对连续时序数据的处理能力不足，导致相当比例的微小病灶变化和早期治疗反应信号被漏检。针对这一问题，本系统采用以下技术：C3k2块通过轻量化设计支持实时推理，减少微小病灶漏检；C2PSA模块捕捉病灶随时间的变化趋势，降低早期信号遗漏率；纵向数据分析模块，并在网站中加入了检测对比功能，从而实现对OCT影像的动态监测。</p>
+                </div>
+           </div>
+        </main>
+        <footer class="footer">
+            <p> © 2025 湿性AMD病灶分割系统 版权所有</p>
+            </footer>
+    </div>
+    <script>
+        window._bd_share_config = {
+            "common": {
+                "bdSnsKey": {},
+                "bdText": "",
+                "bdMini": "2",
+                "bdPic": "",
+                "bdStyle": "0",
+                "bdSize": "16"
+            },
+            "share": {},
+            "image": {
+                "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+                "viewText": "分享到：",
+                "viewSize": "16"
+            },
+            "selectShare": {
+                "bdContainerClass": null,
+                "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+            }
+        };
+        with (document) {
+            0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+        }
+    </script>
+</body>
+</html>
